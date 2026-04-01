@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl:*)",
+      "Bash(npx --yes http-server --version)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

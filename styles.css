@@ -1,0 +1,1095 @@
+/* ============================================================
+   WEDDING INVITATION — MOBILE-FIRST RESPONSIVE CSS
+   Antonella & José · 04.07.2026
+   ============================================================ */
+
+/* Variables */
+:root {
+    --bg-color: #f9f7f2;
+    --text-color: #333333;
+    --accent-color: #4a4a4a;
+    --green-accent: #556b2f;
+    --gold: #c5a059;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ─── UTILITIES ─── */
+.hidden { display: none !important; }
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.content-wrapper {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ─── ANIMATIONS ─── */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ─── WELCOME SECTION ─── */
+.welcome-section {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    justify-content: flex-start;
+    gap: 0;
+    overflow: visible;
+}
+
+.welcome-header {
+    position: relative;
+    display: inline-block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-header::before,
+.welcome-header::after {
+    content: "";
+    position: absolute;
+    width: clamp(86px, 26vw, 140px);
+    aspect-ratio: 2.6 / 1;
+    background-image: url('hoja.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    pointer-events: none;
+    opacity: 0.82;
+    z-index: 0;
+}
+
+.welcome-header::before {
+    top: clamp(12px, 3.5vw, 26px);
+    left: clamp(-48px, -10vw, -24px);
+    transform: rotate(-10deg);
+}
+
+.welcome-header::after {
+    top: auto;
+    bottom: clamp(32px, 8vw, 58px);
+    right: clamp(-44px, -9vw, -18px);
+    transform: scaleY(-1) rotate(28deg);
+}
+
+.main-names,
+.welcome-date {
+    position: relative;
+    z-index: 1;
+}
+
+/* Leaf SVG decorations */
+.leaf-decoration {
+    position: absolute;
+    width: clamp(70px, 18vw, 120px);
+    height: auto;
+    pointer-events: none;
+    display: none;
+}
+
+.leaf-top {
+    top: clamp(30px, 8vw, 60px);
+    right: clamp(-5px, -1vw, -10px);
+    transform: scaleY(-1) rotate(30deg);
+    opacity: 0.85;
+}
+
+.leaf-bottom {
+    bottom: clamp(65px, 17vw, 125px);
+    left: clamp(-22px, -5vw, -40px);
+    transform: rotate(0deg);
+    opacity: 0.85;
+}
+
+/* Names */
+.main-names {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    color: var(--text-color);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+}
+
+.initial-letter.a-letter {
+    font-family: "Hello Paris Serif Regular", serif;
+    font-size: clamp(5rem, 19vw, 8.5rem);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.initial-letter.j-letter {
+    font-family: var(--font-serif);
+    font-size: clamp(3.8rem, 14.5vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1;
+    margin-right: clamp(-6px, -1.5vw, -12px);
+}
+
+.rest-letter {
+    font-family: "Imperial Script", cursive;
+    font-size: clamp(3.2rem, 12.5vw, 5.5rem);
+    font-weight: 400;
+}
+
+.ampersand {
+    font-family: "Imperial Script", cursive;
+    font-size: clamp(2.2rem, 8.5vw, 3.8rem);
+    margin: 0 clamp(0.4rem, 1.5vw, 1rem);
+}
+
+.welcome-date {
+    font-family: var(--font-serif);
+    color: var(--text-color);
+    font-size: clamp(1.6rem, 6vw, 3rem);
+    letter-spacing: 2px;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+/* ─── ENVELOPE (welcome + rsvp shared styles) ─── */
+.envelope-display {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    margin: 0.2rem auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.envelope-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.envelope-back {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.photo-container {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 280px;
+    aspect-ratio: 5 / 7;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    transition: bottom 1.5s ease-out;
+}
+
+.envelope-front {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.couple-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center 60%;
+}
+
+/* ─── MUSIC PLAYER ─── */
+.music-player {
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin: -70px auto 3rem auto;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.music-text {
+    font-family: var(--font-serif);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+}
+
+.progress-container {
+    width: 90%;
+    margin: 0 auto 0.8rem auto;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #d0d0d0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #000;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.control-btn-side {
+    background: none;
+    border: none;
+    cursor: not-allowed;
+    color: #000;
+    opacity: 0.6;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-pause-btn-main {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    padding: 0;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, opacity 0.3s;
+}
+.play-pause-btn-main:hover { transform: scale(1.05); opacity: 0.9; }
+.play-pause-btn-main svg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.control-btn-repeat {
+    background: none;
+    border: none;
+    cursor: not-allowed;
+    color: #000;
+    opacity: 0.3;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ─── MAIN CARD SECTION ─── */
+.card-section {
+    padding-top: 0.1rem;
+    padding-bottom: 0;
+    margin-bottom: -2rem;
+}
+
+/* Carta card shared */
+.carta-card {
+    position: relative;
+    display: inline-block;
+    width: 95%;
+    max-width: 420px;
+    overflow: visible;
+    background-image: url('Carta.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.carta-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.5rem 2.5rem;
+    gap: 10px;
+}
+
+.carta-card .bible-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.15rem, 4vw, 1.55rem);
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-color);
+}
+
+.carta-card .bible-reference {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 400;
+}
+
+.carta-card .names-container {
+    margin: 0.15rem 0;
+}
+
+.carta-card .bride-name,
+.carta-card .groom-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05rem, 3.5vw, 1.3rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text-color);
+    letter-spacing: 1px;
+}
+
+.carta-card .conjunction {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: #666;
+}
+
+.carta-card .wedding-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #666 !important;
+}
+
+/* ─── EVENTS SECTION ─── */
+.events-section {
+    padding: 0 0.5rem 2rem;
+    margin-top: -2rem;
+    overflow: visible;
+}
+
+.events-container {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
+}
+
+.envelope-closed {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+}
+
+.closed-envelope-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ceremony card — floats right, overlaps envelope */
+.ceremony-card {
+    position: relative;
+    z-index: 2;
+    width: 72%;
+    max-width: 340px;
+    align-self: flex-end;
+    margin-right: 2%;
+    margin-top: -52%;
+}
+
+.carta-card-ceremony {
+    width: 100%;
+}
+
+.carta-card-ceremony .carta-content {
+    padding: 0.7rem 0.8rem 0.4rem;
+    text-align: center;
+    align-items: center;
+    gap: 1px;
+}
+
+.carta-card-ceremony .event-title {
+    font-family: 'Playfair Display SC', serif;
+    font-size: clamp(0.65rem, 1.9vw, 1rem);
+    letter-spacing: 2px;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 0.15rem;
+}
+
+.carta-card-ceremony .event-time {
+    font-family: 'Playfair Display SC', serif;
+    font-size: clamp(1rem, 3.2vw, 1.5rem);
+    font-weight: 400;
+    color: #000;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.15rem;
+}
+
+.carta-card-ceremony .event-location {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.75rem, 2.2vw, 0.95rem);
+    margin-bottom: 0.3rem;
+    line-height: 1.35;
+    color: #444;
+}
+
+.carta-card-ceremony .church-icon {
+    width: clamp(38px, 9vw, 65px);
+    height: auto;
+    opacity: 0.85;
+}
+
+.carta-card-ceremony .event-icon-img {
+    margin: 1px 0;
+}
+
+.carta-card-ceremony .btn-location-outline {
+    display: inline-block;
+    font-size: clamp(0.65rem, 1.9vw, 0.8rem);
+    padding: clamp(4px, 1.2vw, 6px) clamp(14px, 4vw, 25px);
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 1px;
+    background: transparent;
+    color: #000;
+    border: 1.5px solid #000;
+    transition: all 0.3s ease;
+}
+
+.carta-card-ceremony .btn-location-outline:hover {
+    background: var(--text-color);
+    color: #fff;
+}
+
+/* Party card — floats left, overlaps ceremony card */
+.party-card {
+    background: #8c8866;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    align-self: flex-start;
+    margin-left: 3%;
+    margin-top: -14%;
+    width: 58%;
+    max-width: 220px;
+    aspect-ratio: 1 / 1.4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1rem, 4vw, 2rem) clamp(0.8rem, 2.5vw, 1.2rem);
+}
+
+.event-title-white {
+    font-family: 'Playfair Display SC', serif;
+    font-size: clamp(0.65rem, 1.9vw, 1rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+}
+
+.event-time-white {
+    font-family: 'Playfair Display SC', serif;
+    font-size: clamp(1rem, 3.2vw, 1.5rem);
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.15rem;
+}
+
+.event-location-white {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.72rem, 2.1vw, 0.95rem);
+    color: #fff;
+    line-height: 1.35;
+    margin-bottom: 0.3rem;
+}
+
+.party-icon {
+    width: clamp(30px, 8vw, 55px);
+    height: auto;
+    filter: brightness(0) invert(1);
+    opacity: 1;
+    margin: 0.2rem 0;
+}
+
+.btn-location-white {
+    display: inline-block;
+    padding: clamp(4px, 1.2vw, 8px) clamp(14px, 4vw, 30px);
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid #fff;
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 1px;
+    font-size: clamp(0.65rem, 1.9vw, 0.9rem);
+    transition: all 0.3s ease;
+    margin-top: 0.2rem;
+}
+
+.btn-location-white:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ─── DRESS CODE ─── */
+.dress-code-section {
+    padding: 1.5rem 1rem 2rem;
+}
+
+.dresscode-stack {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+}
+
+.dresscode-cards-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+}
+
+.dresscode-badge {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.dresscode-badge-img {
+    width: clamp(100px, 27vw, 210px);
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.15));
+}
+
+.dresscode-details {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    margin-left: clamp(-18px, -4vw, -35px);
+}
+
+.dresscode-details-img {
+    width: clamp(170px, 46vw, 320px);
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.dresscode-pin {
+    display: block;
+    color: inherit;
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin: 0.8rem auto 0;
+}
+.dresscode-pin:hover { transform: scale(1.03); }
+
+.pinterest-pin-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 0.7rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    width: 88px;
+    cursor: pointer;
+}
+
+.pinterest-icon { margin-bottom: 0.35rem; }
+
+.pin-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.pin-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.55rem;
+    color: #888;
+    font-style: italic;
+}
+
+/* ─── GIFTS ─── */
+.gifts-section { padding: 1.5rem 1rem; }
+
+.carta-card-gifts {
+    width: 95%;
+    max-width: 420px;
+}
+
+.carta-card-gifts .carta-content {
+    padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 1.8rem);
+    gap: 8px;
+}
+
+.gift-emotional {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.gift-value-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.2vw, 1.15rem);
+    font-weight: 600;
+    color: var(--text-color);
+    margin-top: 0.4rem;
+}
+
+.gift-alias {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.9rem, 2.8vw, 1rem);
+    font-weight: 500;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+.gift-thanks {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.2vw, 1.15rem);
+    font-style: italic;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0.3rem;
+}
+
+/* ─── NO KIDS ─── */
+.no-kids-section { padding: 0.8rem 1rem; }
+
+.no-kids-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.no-kids-icon {
+    width: 44px;
+    height: auto;
+    opacity: 0.75;
+}
+
+.no-kids-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.85rem, 2.8vw, 0.95rem);
+    font-style: italic;
+    color: #666;
+    letter-spacing: 0.5px;
+    max-width: 340px;
+    line-height: 1.5;
+}
+
+/* ─── COUNTDOWN ─── */
+.countdown-section {
+    background-color: rgba(197, 186, 166, 0.15);
+    border: 1px solid rgba(197, 186, 166, 0.25);
+    border-radius: 12px;
+    padding: clamp(1.5rem, 5vw, 2rem) 1.5rem;
+    margin: 0.5rem auto;
+    width: min(calc(100% - 2rem), 560px);
+}
+
+.countdown-section h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.timer-container {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1.5rem, 5vw, 2rem);
+    margin-top: 1.5rem;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-box span:first-child {
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-family: var(--font-serif);
+    color: var(--text-color);
+    line-height: 1;
+}
+
+.time-box .label {
+    font-size: clamp(0.62rem, 2vw, 0.8rem);
+    text-transform: uppercase;
+    opacity: 0.7;
+    color: var(--text-color);
+    margin-top: 0.3rem;
+}
+
+.countdown-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
+    font-style: italic;
+    color: #666;
+    margin-top: 1.2rem;
+}
+
+/* ─── RSVP ─── */
+.rsvp-section {
+    padding: 0.5rem 1rem 2rem;
+}
+
+.rsvp-envelope-display {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rsvp-envelope-display .envelope-back {
+    z-index: 1;
+}
+
+.rsvp-card-container {
+    position: absolute;
+    bottom: 46%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64%;
+    z-index: 2;
+}
+
+.rsvp-envelope-display .envelope-front {
+    z-index: 3;
+}
+
+.carta-card-rsvp {
+    width: 100%;
+    max-width: 100%;
+}
+
+.carta-card-rsvp .carta-content {
+    padding: clamp(1rem, 4vw, 1.5rem) clamp(0.6rem, 2.5vw, 1rem) clamp(1.2rem, 4vw, 1.8rem);
+    gap: 5px;
+}
+
+.rsvp-title {
+    font-family: 'Playfair Display SC', serif;
+    font-size: clamp(0.6rem, 1.8vw, 0.85rem);
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: var(--text-color);
+    margin-bottom: 0.3rem;
+}
+
+.rsvp-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.82rem, 2.8vw, 1rem);
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.rsvp-deadline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.68rem, 2.1vw, 0.8rem);
+    color: #666;
+    margin-bottom: 0.4rem;
+}
+
+.rsvp-form-btn {
+    display: inline-block;
+    padding: clamp(5px, 1.5vw, 8px) clamp(12px, 3.5vw, 22px);
+    border: 1.5px solid var(--text-color);
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.72rem, 2.2vw, 0.85rem);
+    font-weight: 500;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.rsvp-form-btn:hover {
+    background: var(--text-color);
+    color: #fff;
+}
+
+/* ─── FOOTER ─── */
+footer {
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.white-heart {
+    color: white;
+    -webkit-text-fill-color: white;
+    text-shadow: 0 0 1px #000;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ─── Tablets y pantallas medianas (600px+) ─── */
+@media (min-width: 600px) {
+    .ampersand {
+        flex-basis: auto;
+    }
+
+    .events-container {
+        max-width: 560px;
+    }
+
+    .ceremony-card {
+        width: 70%;
+        max-width: 360px;
+        margin-top: -54%;
+    }
+
+    .party-card {
+        width: 55%;
+        max-width: 230px;
+        margin-top: -13%;
+    }
+
+    .music-player {
+        margin-top: -80px;
+    }
+}
+
+/* ─── Móvil medio-grande (390px – 479px) — iPhone estándar ─── */
+@media (max-width: 479px) {
+    .events-container {
+        max-width: 420px;
+    }
+
+    .envelope-closed {
+        max-width: 360px;
+    }
+
+    .ceremony-card {
+        width: 74%;
+        max-width: 290px;
+        margin-right: 1%;
+        margin-top: -52%;
+    }
+
+    .party-card {
+        width: 60%;
+        max-width: 200px;
+        margin-left: 2%;
+        margin-top: -16%;
+    }
+
+    .rsvp-envelope-display {
+        max-width: 430px;
+    }
+
+    .dresscode-details {
+        margin-left: clamp(-22px, -5vw, -42px);
+    }
+
+    .dresscode-details-img {
+        width: clamp(190px, 56vw, 300px);
+    }
+
+    .rsvp-card-container {
+        width: 65%;
+        bottom: 45%;
+    }
+
+    .music-player {
+        margin-top: -60px;
+        margin-bottom: 2.5rem;
+    }
+}
+
+/* ─── Móvil pequeño (< 390px) ─── */
+@media (max-width: 389px) {
+    .events-container {
+        max-width: 360px;
+    }
+
+    .envelope-closed {
+        max-width: 310px;
+    }
+
+    .ceremony-card {
+        width: 76%;
+        max-width: 255px;
+        margin-right: 0%;
+        margin-top: -50%;
+    }
+
+    .party-card {
+        width: 60%;
+        max-width: 175px;
+        margin-left: 1%;
+        margin-top: -18%;
+    }
+
+    .rsvp-envelope-display {
+        max-width: 380px;
+    }
+
+    .dresscode-details {
+        margin-left: clamp(-20px, -5.5vw, -40px);
+    }
+
+    .dresscode-details-img {
+        width: clamp(185px, 58vw, 285px);
+    }
+
+    .rsvp-card-container {
+        width: 65%;
+        bottom: 44%;
+    }
+
+    .envelope-display {
+        max-width: 360px;
+    }
+
+    .music-player {
+        margin-top: -50px;
+        margin-bottom: 2rem;
+    }
+}
+
+/* ─── Móvil muy pequeño (< 340px) ─── */
+@media (max-width: 339px) {
+    .envelope-closed {
+        max-width: 280px;
+    }
+
+    .ceremony-card {
+        width: 78%;
+        max-width: 230px;
+        margin-top: -48%;
+    }
+
+    .party-card {
+        max-width: 155px;
+        margin-left: 0%;
+        margin-top: -20%;
+    }
+
+    .dresscode-details {
+        margin-left: clamp(-16px, -5vw, -30px);
+    }
+
+    .dresscode-details-img {
+        width: clamp(175px, 60vw, 250px);
+    }
+
+    .rsvp-card-container {
+        width: 64%;
+        bottom: 45%;
+    }
+
+    .countdown-section {
+        width: calc(100% - 1rem);
+    }
+}
